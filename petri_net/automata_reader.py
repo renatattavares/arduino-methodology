@@ -8,6 +8,16 @@ def read_automata(automata_file):
     with open(automata_file) as automata:
         lines = automata.readlines()
 
+    automata = []
+
+    for line in lines:
+        start = '(START)' in line
+        final = '(FINAL)' in line
+        if start is False and final is False:
+            automata.append(line.strip().split(" "))
+
+    dataframe = pd.DataFrame(automata, columns = ['Initial', 'Event', 'Final'])
+
     print('\n##### Automata file interpretated #####')
 
-    return lines
+    return dataframe
