@@ -10,36 +10,35 @@ clock q, d;</declaration>
 		<name x="5" y="5">Rodinha</name>
 		<declaration>// Place local declarations here.
 clock a;</declaration>
-		<location id="id0" x="238" y="-493">
-			<label kind="invariant" x="255" y="-501">a&lt;=769</label>
+		<location id="id0" x="-51" y="-391">
+			<label kind="invariant" x="-34" y="-399">a&lt;=769</label>
 		</location>
-		<location id="id1" x="136" y="-425">
-			<name x="119" y="-408">Vazio</name>
+		<location id="id1" x="-153" y="-323">
+			<name x="-170" y="-306">Vazio</name>
 		</location>
-		<location id="id2" x="136" y="-578">
-			<name x="93" y="-612">Ocupado</name>
-			<label kind="invariant" x="59" y="-586">a&lt;=1104</label>
+		<location id="id2" x="-153" y="-476">
+			<name x="-196" y="-510">Ocupado</name>
+			<label kind="invariant" x="-230" y="-484">a&lt;=1104</label>
 		</location>
 		<init ref="id1"/>
 		<transition>
 			<source ref="id0"/>
 			<target ref="id2"/>
-			<label kind="guard" x="195" y="-544">a&gt;=719</label>
-			<label kind="synchronisation" x="195" y="-578">GIROU!</label>
-			<label kind="assignment" x="204" y="-561">a:=0</label>
+			<label kind="guard" x="-94" y="-442">a&gt;=719</label>
+			<label kind="synchronisation" x="-94" y="-476">GIROU!</label>
+			<label kind="assignment" x="-85" y="-459">a:=0</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id0"/>
-			<label kind="synchronisation" x="195" y="-450">RODE?</label>
-			<label kind="assignment" x="204" y="-433">a:=0</label>
+			<label kind="synchronisation" x="-94" y="-348">RODE?</label>
+			<label kind="assignment" x="-85" y="-331">a:=0</label>
 		</transition>
 		<transition>
 			<source ref="id2"/>
 			<target ref="id1"/>
-			<label kind="guard" x="68" y="-501">a&gt;=1102</label>
-			<label kind="synchronisation" x="85" y="-518">LEU!</label>
-			<nail x="136" y="-510"/>
+			<label kind="guard" x="-221" y="-399">a&gt;=1102</label>
+			<label kind="synchronisation" x="-204" y="-416">LEU!</label>
 		</transition>
 	</template>
 	<template>
@@ -528,7 +527,7 @@ int module(int color, int color_mm){
     else{
             module = 3;
         }
-    return (module); // Retornar valor do inteiro decision
+    return (module); // Retornar valor do inteiro esperar
 }
 </declaration>
 		<location id="id34" x="-1564" y="-1870">
@@ -603,18 +602,18 @@ int module(int color, int color_mm){
 		<transition>
 			<source ref="id51"/>
 			<target ref="id34"/>
-			<label kind="guard" x="-1589" y="-1819">esperar == 3</label>
+			<label kind="guard" x="-1606" y="-1819">esperar == 3</label>
 		</transition>
 		<transition>
 			<source ref="id35"/>
 			<target ref="id38"/>
-			<label kind="synchronisation" x="-1742" y="-1929">RODOU?</label>
+			<label kind="synchronisation" x="-1768" y="-1946">RODOU?</label>
 		</transition>
 		<transition>
 			<source ref="id51"/>
 			<target ref="id35"/>
-			<label kind="guard" x="-1708" y="-1836">esperar == 1</label>
-			<label kind="synchronisation" x="-1683" y="-1853">RODE!</label>
+			<label kind="guard" x="-1725" y="-1836">esperar == 1</label>
+			<label kind="synchronisation" x="-1700" y="-1819">RODE!</label>
 		</transition>
 		<transition>
 			<source ref="id50"/>
@@ -674,7 +673,7 @@ int module(int color, int color_mm){
 		<transition>
 			<source ref="id50"/>
 			<target ref="id43"/>
-			<label kind="guard" x="-1674" y="-2057">esperar == 2</label>
+			<label kind="guard" x="-1691" y="-2065">esperar == 2</label>
 		</transition>
 		<transition>
 			<source ref="id45"/>
@@ -711,7 +710,7 @@ int module(int color, int color_mm){
 		<transition>
 			<source ref="id51"/>
 			<target ref="id49"/>
-			<label kind="guard" x="-1674" y="-1725">esperar == 2</label>
+			<label kind="guard" x="-1683" y="-1717">esperar == 2</label>
 		</transition>
 		<transition>
 			<source ref="id53"/>
@@ -743,6 +742,271 @@ int module(int color, int color_mm){
 			<target ref="id53"/>
 			<label kind="synchronisation" x="-1887" y="-1861">LEU?</label>
 			<label kind="assignment" x="-1980" y="-1844">decisao = decision(color, color_mm)</label>
+		</transition>
+	</template>
+	<template>
+		<name>ControleParcial</name>
+		<declaration>int decisao;
+int esperar;
+clock c;
+
+/*
+
+decision = 0 ---&gt; BACKWARD (Movimento mais rápido, portanto, nos casos em que a direção foi irrevelante, este movimento será priorizado)
+
+decision = 1 ---&gt; FORWARD
+
+*/
+
+int decision(int color, int color_mm){
+    
+    // Declaração de Variáveis    
+    int decision;
+    int result;
+    int mod;    
+
+    result = color - color_mm;
+    
+        if (result &gt; 0){
+            mod = result;
+             
+            if (mod &lt;= 3){
+                decision = 0; // Backward
+            }
+            else{    
+                decision = 1; // Forward
+            }
+        }
+        
+        if (result &lt; 0){
+    
+            mod = result*-1;        
+            
+            if (mod &lt; 3){
+                decision = 1; // Foward
+            }
+            else{
+                decision = 0; // Backward
+            }
+        }
+    return (decision); // Retornar valor do inteiro decision
+}
+
+int module(int color, int color_mm){
+    
+    // Declaração de Variáveis    
+    int module;
+
+    module = color - color_mm;
+    
+    if (module &gt; 0){
+        module = module;
+    }
+    else{
+        module = module * -1;
+    }
+    
+    if(module == 2 || module == 4){
+        module = 2;
+    }
+    else if(module == 1 || module == 5){
+            module = 1;
+        }
+    else{
+            module = 3;
+        }
+    return (module); // Retornar valor do inteiro esperar
+}</declaration>
+		<location id="id56" x="-1572" y="-1717">
+			<committed/>
+		</location>
+		<location id="id57" x="-1572" y="-2040">
+			<committed/>
+		</location>
+		<location id="id58" x="-1683" y="-1912">
+			<committed/>
+		</location>
+		<location id="id59" x="-1207" y="-1878">
+			<committed/>
+		</location>
+		<location id="id60" x="-1861" y="-1963">
+		</location>
+		<location id="id61" x="-1207" y="-2040">
+		</location>
+		<location id="id62" x="-1351" y="-2040">
+		</location>
+		<location id="id63" x="-1470" y="-2040">
+			<committed/>
+		</location>
+		<location id="id64" x="-1207" y="-1717">
+		</location>
+		<location id="id65" x="-1343" y="-1717">
+		</location>
+		<location id="id66" x="-1462" y="-1717">
+			<committed/>
+		</location>
+		<location id="id67" x="-2065" y="-1878">
+		</location>
+		<location id="id68" x="-1683" y="-2040">
+		</location>
+		<location id="id69" x="-1683" y="-1717">
+		</location>
+		<location id="id70" x="-2150" y="-1878">
+			<committed/>
+		</location>
+		<location id="id71" x="-1861" y="-1878">
+			<name x="-1844" y="-1895">Mover</name>
+			<committed/>
+		</location>
+		<location id="id72" x="-1989" y="-1878">
+			<name x="-1980" y="-1903">Parado</name>
+		</location>
+		<location id="id73" x="-1989" y="-1963">
+			<committed/>
+		</location>
+		<init ref="id70"/>
+		<transition>
+			<source ref="id62"/>
+			<target ref="id61"/>
+			<label kind="synchronisation" x="-1333" y="-2057">RODOU?</label>
+		</transition>
+		<transition>
+			<source ref="id65"/>
+			<target ref="id64"/>
+			<label kind="synchronisation" x="-1325" y="-1734">RODOU?</label>
+		</transition>
+		<transition>
+			<source ref="id63"/>
+			<target ref="id62"/>
+			<label kind="synchronisation" x="-1452" y="-2057">FORWARD!</label>
+		</transition>
+		<transition>
+			<source ref="id68"/>
+			<target ref="id71"/>
+			<label kind="guard" x="-1623" y="-1955">esperar == 3</label>
+			<label kind="synchronisation" x="-1615" y="-1972">RODOU?</label>
+			<nail x="-1598" y="-1878"/>
+		</transition>
+		<transition>
+			<source ref="id69"/>
+			<target ref="id71"/>
+			<label kind="guard" x="-1623" y="-1819">esperar == 3</label>
+			<label kind="synchronisation" x="-1606" y="-1836">RODOU?</label>
+			<nail x="-1598" y="-1878"/>
+		</transition>
+		<transition>
+			<source ref="id69"/>
+			<target ref="id56"/>
+			<label kind="guard" x="-1683" y="-1691">esperar == 2</label>
+			<label kind="synchronisation" x="-1666" y="-1708">RODOU?</label>
+		</transition>
+		<transition>
+			<source ref="id68"/>
+			<target ref="id57"/>
+			<label kind="guard" x="-1674" y="-2065">esperar == 2</label>
+			<label kind="synchronisation" x="-1666" y="-2082">RODOU?</label>
+		</transition>
+		<transition>
+			<source ref="id68"/>
+			<target ref="id58"/>
+			<label kind="guard" x="-1759" y="-1989">esperar == 1</label>
+			<label kind="synchronisation" x="-1742" y="-2006">RODOU?</label>
+		</transition>
+		<transition>
+			<source ref="id69"/>
+			<target ref="id58"/>
+			<label kind="guard" x="-1751" y="-1827">esperar == 1</label>
+			<label kind="synchronisation" x="-1734" y="-1844">RODOU?</label>
+		</transition>
+		<transition>
+			<source ref="id58"/>
+			<target ref="id60"/>
+			<label kind="synchronisation" x="-1776" y="-1955">RODE!</label>
+		</transition>
+		<transition>
+			<source ref="id59"/>
+			<target ref="id72"/>
+			<label kind="synchronisation" x="-1589" y="-1649">CAINDO!</label>
+			<nail x="-1130" y="-1878"/>
+			<nail x="-1130" y="-1657"/>
+			<nail x="-1989" y="-1657"/>
+		</transition>
+		<transition>
+			<source ref="id61"/>
+			<target ref="id59"/>
+			<label kind="synchronisation" x="-1198" y="-1972">GIROU?</label>
+		</transition>
+		<transition>
+			<source ref="id64"/>
+			<target ref="id59"/>
+			<label kind="synchronisation" x="-1207" y="-1827">GIROU?</label>
+			<label kind="assignment" x="-1198" y="-1810">c:=0</label>
+		</transition>
+		<transition>
+			<source ref="id60"/>
+			<target ref="id73"/>
+			<label kind="synchronisation" x="-1946" y="-1989">GIROU?</label>
+			<label kind="assignment" x="-1929" y="-1955">c:=0</label>
+		</transition>
+		<transition>
+			<source ref="id57"/>
+			<target ref="id63"/>
+			<label kind="synchronisation" x="-1537" y="-2057">RODE!</label>
+		</transition>
+		<transition>
+			<source ref="id66"/>
+			<target ref="id65"/>
+			<label kind="synchronisation" x="-1445" y="-1734">BACKWARD!</label>
+		</transition>
+		<transition>
+			<source ref="id67"/>
+			<target ref="id72"/>
+			<label kind="synchronisation" x="-2057" y="-1895">GIROU?</label>
+			<label kind="assignment" x="-2048" y="-1878">c:=0</label>
+		</transition>
+		<transition>
+			<source ref="id70"/>
+			<target ref="id67"/>
+			<label kind="synchronisation" x="-2133" y="-1920">RODE!</label>
+			<label kind="assignment" x="-2141" y="-1903">color := 4</label>
+		</transition>
+		<transition>
+			<source ref="id56"/>
+			<target ref="id66"/>
+			<label kind="synchronisation" x="-1538" y="-1734">RODE!</label>
+		</transition>
+		<transition>
+			<source ref="id71"/>
+			<target ref="id68"/>
+			<label kind="guard" x="-1972" y="-2057">(color_mm != color)&amp;&amp;(decisao == 1)</label>
+			<label kind="synchronisation" x="-1861" y="-2091">FORWARD!</label>
+			<label kind="assignment" x="-1955" y="-2074">esperar = module(color, color_mm)</label>
+			<nail x="-1751" y="-2040"/>
+		</transition>
+		<transition>
+			<source ref="id71"/>
+			<target ref="id69"/>
+			<label kind="guard" x="-1980" y="-1785">(color_mm != color)&amp;&amp;(decisao == 0)</label>
+			<label kind="synchronisation" x="-1878" y="-1802">BACKWARD!</label>
+			<label kind="assignment" x="-1972" y="-1768">esperar = module(color, color_mm)</label>
+			<nail x="-1751" y="-1717"/>
+		</transition>
+		<transition>
+			<source ref="id71"/>
+			<target ref="id60"/>
+			<label kind="guard" x="-1938" y="-1921">color_mm == color</label>
+			<label kind="synchronisation" x="-1904" y="-1938">RODE!</label>
+		</transition>
+		<transition>
+			<source ref="id73"/>
+			<target ref="id72"/>
+			<label kind="synchronisation" x="-2057" y="-1938">CAINDO!</label>
+		</transition>
+		<transition>
+			<source ref="id72"/>
+			<target ref="id71"/>
+			<label kind="synchronisation" x="-1938" y="-1870">LEU?</label>
+			<label kind="assignment" x="-2040" y="-1853">decisao = decision(color, color_mm)</label>
 		</transition>
 	</template>
 	<template>
@@ -791,106 +1055,106 @@ int decision(int color, int color_mm){
         }
     return (decision); // Retornar valor do inteiro decision
 }</declaration>
-		<location id="id56" x="-1555" y="-1819">
+		<location id="id74" x="-1555" y="-1819">
 			<name x="-1606" y="-1844">Mover</name>
 			<committed/>
 		</location>
-		<location id="id57" x="-1393" y="-1989">
+		<location id="id75" x="-1393" y="-1989">
 		</location>
-		<location id="id58" x="-1393" y="-1674">
+		<location id="id76" x="-1393" y="-1674">
 		</location>
-		<location id="id59" x="-1555" y="-1921">
+		<location id="id77" x="-1555" y="-1921">
 		</location>
-		<location id="id60" x="-1844" y="-1819">
+		<location id="id78" x="-1844" y="-1819">
 		</location>
-		<location id="id61" x="-1937" y="-1819">
+		<location id="id79" x="-1937" y="-1819">
 			<committed/>
 		</location>
-		<location id="id62" x="-1742" y="-1819">
+		<location id="id80" x="-1742" y="-1819">
 			<name x="-1733" y="-1844">Parado</name>
 		</location>
-		<location id="id63" x="-1742" y="-1921">
+		<location id="id81" x="-1742" y="-1921">
 			<committed/>
 		</location>
-		<init ref="id61"/>
+		<init ref="id79"/>
 		<transition>
-			<source ref="id58"/>
-			<target ref="id56"/>
+			<source ref="id76"/>
+			<target ref="id74"/>
 			<label kind="synchronisation" x="-1385" y="-1768">RODOU?</label>
 			<nail x="-1393" y="-1819"/>
 		</transition>
 		<transition>
-			<source ref="id59"/>
-			<target ref="id63"/>
+			<source ref="id77"/>
+			<target ref="id81"/>
 			<label kind="synchronisation" x="-1674" y="-1946">GIROU?</label>
 			<label kind="assignment" x="-1724" y="-1921">c:=0</label>
 		</transition>
 		<transition>
-			<source ref="id60"/>
-			<target ref="id62"/>
+			<source ref="id78"/>
+			<target ref="id80"/>
 			<label kind="synchronisation" x="-1819" y="-1844">GIROU?</label>
 			<label kind="assignment" x="-1810" y="-1819">c:=0</label>
 		</transition>
 		<transition>
-			<source ref="id61"/>
-			<target ref="id60"/>
+			<source ref="id79"/>
+			<target ref="id78"/>
 			<label kind="synchronisation" x="-1912" y="-1870">RODE!</label>
 			<label kind="assignment" x="-1921" y="-1853">color := 4</label>
 		</transition>
 		<transition>
-			<source ref="id56"/>
-			<target ref="id57"/>
+			<source ref="id74"/>
+			<target ref="id75"/>
 			<label kind="guard" x="-1657" y="-1989">(color_mm != color)&amp;&amp;(decisao == 1)</label>
 			<label kind="synchronisation" x="-1563" y="-2006">FORWARD!</label>
 		</transition>
 		<transition>
-			<source ref="id56"/>
-			<target ref="id58"/>
+			<source ref="id74"/>
+			<target ref="id76"/>
 			<label kind="guard" x="-1674" y="-1717">(color_mm != color)&amp;&amp;(decisao == 0)</label>
 			<label kind="synchronisation" x="-1589" y="-1734">BACKWARD!</label>
 		</transition>
 		<transition>
-			<source ref="id56"/>
-			<target ref="id59"/>
+			<source ref="id74"/>
+			<target ref="id77"/>
 			<label kind="guard" x="-1674" y="-1904">color_mm == color</label>
 			<label kind="synchronisation" x="-1631" y="-1887">RODE!</label>
 		</transition>
 		<transition>
-			<source ref="id63"/>
-			<target ref="id62"/>
+			<source ref="id81"/>
+			<target ref="id80"/>
 			<label kind="synchronisation" x="-1810" y="-1887">CAINDO!</label>
 		</transition>
 		<transition>
-			<source ref="id62"/>
-			<target ref="id56"/>
+			<source ref="id80"/>
+			<target ref="id74"/>
 			<label kind="synchronisation" x="-1657" y="-1810">LEU?</label>
 			<label kind="assignment" x="-1750" y="-1793">decisao = decision(color, color_mm)</label>
 		</transition>
 		<transition>
-			<source ref="id57"/>
-			<target ref="id56"/>
+			<source ref="id75"/>
+			<target ref="id74"/>
 			<label kind="synchronisation" x="-1376" y="-1904">RODOU?</label>
 			<nail x="-1393" y="-1819"/>
 		</transition>
 	</template>
 	<template>
 		<name>Queda</name>
-		<location id="id64" x="-93" y="-8">
+		<location id="id82" x="-93" y="-8">
 			<label kind="invariant" x="-76" y="-17">q &lt;= 630</label>
 		</location>
-		<location id="id65" x="-93" y="-153">
+		<location id="id83" x="-93" y="-153">
 		</location>
-		<init ref="id65"/>
+		<init ref="id83"/>
 		<transition>
-			<source ref="id64"/>
-			<target ref="id65"/>
+			<source ref="id82"/>
+			<target ref="id83"/>
 			<label kind="guard" x="-76" y="-93">q &gt;= 180</label>
 			<label kind="synchronisation" x="-76" y="-68">QUEDA!</label>
 			<nail x="-93" y="-76"/>
 		</transition>
 		<transition>
-			<source ref="id65"/>
-			<target ref="id64"/>
+			<source ref="id83"/>
+			<target ref="id82"/>
 			<label kind="synchronisation" x="-212" y="-93">CAINDO?</label>
 			<label kind="assignment" x="-195" y="-76">q:=0</label>
 			<label kind="comments" x="-238" y="-51">A rodinha girou?</label>
@@ -901,10 +1165,11 @@ int decision(int color, int color_mm){
 R = Rodinha();
 D = Distribuidor();
 C = Controle();
+CP = ControleParcial();
 CS = ControleSerial();
 M = Random();
 Q = Queda();
 
 // List one or more processes to be composed into a system.
-system D, C, M, Q, R;</system>
+system D, CP, M, Q, R;</system>
 </nta>
