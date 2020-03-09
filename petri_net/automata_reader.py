@@ -1,6 +1,7 @@
 """
 Module to interpret automata txt file and generate the relation between all states
 """
+import pandas as pd
 
 def read_automata(automata_file):
 
