@@ -16,7 +16,7 @@ def read_automata(automata_file):
         if start is False and final is False:
             automata.append(line.strip().split(" "))
 
-    dataframe = pd.DataFrame(automata, columns = ['Initial', 'Event', 'Final'])
+    dataframe = pd.DataFrame(automata, columns = ['State', 'Event', 'State'])
 
     print('\n##### Automata file interpretated #####')
 
