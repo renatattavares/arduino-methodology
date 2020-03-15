@@ -1,5 +1,281 @@
-(START) |- 0
-0 a 1
-1 b 2
-1 -| (FINAL)
-2 -| (FINAL)
+# Created Sun Mar 15 13:47:29 2020 by TINA version 3.5.0
+
+kts mm_arduino
+66 nodes
+102 edges
+2 state property namespace(s)
+  L: 1 property: div
+  S: 15 properties: p0 p14 p2 ...
+1 transition property namespace(s)
+  E: 27 properties: t0 t10 t16 ...
+120 state property sets
+  66 over namespace L
+  54 over namespace S
+27 transition property sets
+  27 over namespace E
+
+state 0
+props p14 p59
+trans t0/1
+
+state 1
+props p59 p6
+trans t4/2
+
+state 2
+props p2 p59
+trans t16/0 t10/3 t5/4 t6/5 t7/6 t8/7 t9/8
+
+state 3
+props p5 p59
+trans t58/9
+
+state 4
+props p59 p93
+trans t20/10
+
+state 5
+props p59 p94
+trans t58/11
+
+state 6
+props p0 p59
+trans t20/12
+
+state 7
+props p3 p59
+trans t58/13
+
+state 8
+props p4 p59
+trans t72/1
+
+state 9
+props p5 p60
+trans t61/14
+
+state 10
+props p61 p93
+trans t76/15
+
+state 11
+props p60 p94
+trans t61/16
+
+state 12
+props p0 p61
+trans t70/17
+
+state 13
+props p3 p60
+trans t71/18
+
+state 14
+props p5 p64
+trans t73/19
+
+state 15
+props p62 p93
+trans t68/20
+
+state 16
+props p64 p94
+trans t62/21
+
+state 17
+props p6 p61
+trans t4/22
+
+state 18
+props p6 p60
+trans t4/23
+
+state 19
+props p6 p64
+trans t4/24
+
+state 20
+props p6 p62
+trans t4/25
+
+state 21
+props p63 p94
+trans t69/26
+
+state 22
+props p2 p61
+trans t5/10 t10/27 t16/28 t6/29 t7/30 t8/31 t9/32
+
+state 23
+props p2 p60
+trans t10/9 t6/11 t16/33 t5/34 t7/35 t8/36 t9/37
+
+state 24
+props p2 p64
+trans t6/16 t10/38 t16/39 t5/40 t7/41 t8/42 t9/43
+
+state 25
+props p2 p62
+trans t10/44 t16/45 t5/46 t6/47 t7/48 t8/49 t9/50
+
+state 26
+props p6 p63
+trans t4/51
+
+state 27
+props p5 p61
+trans t21/3
+
+state 28
+props p14 p61
+trans t0/17
+
+state 29
+props p61 p94
+trans t76/47
+
+state 30
+props p0 p61
+trans t70/17
+
+state 31
+props p3 p61
+trans t21/7
+
+state 32
+props p4 p61
+trans t21/52
+
+state 33
+props p14 p60
+trans t0/18
+
+state 34
+props p60 p93
+trans t61/40
+
+state 35
+props p0 p60
+trans t59/6
+
+state 36
+props p3 p60
+trans t71/18
+
+state 37
+props p4 p60
+trans t59/53
+
+state 38
+props p5 p64
+trans t73/19
+
+state 39
+props p14 p64
+trans t0/19
+
+state 40
+props p64 p93
+trans t62/54
+
+state 41
+props p0 p64
+trans t62/55
+
+state 42
+props p3 p64
+trans t60/56
+
+state 43
+props p4 p64
+trans t60/37
+
+state 44
+props p5 p62
+trans t64/57
+
+state 45
+props p14 p62
+trans t0/20
+
+state 46
+props p62 p93
+trans t68/20
+
+state 47
+props p62 p94
+trans t64/58
+
+state 48
+props p0 p62
+trans t77/59
+
+state 49
+props p3 p62
+trans t77/31
+
+state 50
+props p4 p62
+trans t77/32
+
+state 51
+props p2 p63
+trans t5/54 t7/55 t10/57 t16/60 t6/61 t8/62 t9/63
+
+state 52
+props p4 p59
+trans t72/1
+
+state 53
+props p4 p59
+trans t72/1
+
+state 54
+props p63 p93
+trans t75/64
+
+state 55
+props p0 p63
+trans t75/48
+
+state 56
+props p3 p60
+trans t71/18
+
+state 57
+props p5 p63
+trans t63/65
+
+state 58
+props p63 p94
+trans t69/26
+
+state 59
+props p0 p61
+trans t70/17
+
+state 60
+props p14 p63
+trans t0/26
+
+state 61
+props p63 p94
+trans t69/26
+
+state 62
+props p3 p63
+trans t63/42
+
+state 63
+props p4 p63
+trans t75/50
+
+state 64
+props p62 p93
+trans t68/20
+
+state 65
+props p5 p64
+trans t73/19
+
+

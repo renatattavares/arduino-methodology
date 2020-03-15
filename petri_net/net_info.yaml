@@ -1,0 +1,5 @@
+# This file must receive some informations about the net in order to write correctly the arduino code that represents the generated automata. The methodology splits the petri net places in two types: the places that generates inputs in the code and the places that generates outputs.
+
+# For the developed petri net, the only place that generates inputs is p2, representing the function get_color. The treatment of this place in the arduino code will require a switch case setence for all states related to place p2.
+
+input_places: p2

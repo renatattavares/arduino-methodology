@@ -1,0 +1,183 @@
+p 335.0 50.0 p2 0 n
+t 240.0 135.0 t5 0 0 n
+t 285.0 135.0 t6 0 0 n
+t 340.0 135.0 t7 0 0 n
+t 495.0 135.0 t10 0 0 n
+t 440.0 135.0 t9 0 0 n
+t 390.0 135.0 t8 0 0 n
+p 1215.0 425.0 p60 0 n azul s
+p 655.0 385.0 p61 0 n vermelho s
+p 900.0 750.0 p63 0 n marrom s
+p 1195.0 720.0 p64 0 n verde s
+t 1250.0 570.0 t61 502 574 n
+t 1195.0 570.0 t60 511 555 n
+t 1055.0 710.0 t63 511 555 n
+t 785.0 715.0 t64 511 555 n
+t 1095.0 345.0 t58 502 574 n
+t 1070.0 395.0 t59 511 555 n
+p 925.0 320.0 p59 1 n amarelo s
+p 665.0 730.0 p62 0 n laranja s
+t 790.0 335.0 t21 502 574 n
+t 800.0 370.0 t20 511 555 n
+t 640.0 550.0 t77 502 574 n
+t 680.0 550.0 t76 511 555 n
+t 1065.0 770.0 t62 502 574 n
+t 785.0 765.0 t75 502 574 n
+t 145.0 50.0 t4 704 704 n
+t 40.0 355.0 t68 c 719 769 n laranja s
+t 40.0 390.0 t72 c 719 769 n amarelo s
+t 40.0 425.0 t71 c 719 769 n azul s
+t 40.0 460.0 t69 c 719 769 n marrom s
+t 40.0 495.0 t73 c 719 769 n verde s
+t 40.0 530.0 t70 c 719 769 n vermelho s
+t 180.0 135.0 t16 0 w n
+t 40.0 565.0 t0 c 719 769 n nada s
+p 180.0 240.0 p14 1 n
+p 40.0 50.0 p6 0 n {90 graus} s
+p 240.0 230.0 p93 0 n laranja s
+p 340.0 225.0 p0 0 n vermelho s
+p 390.0 225.0 p3 0 n azul s
+p 440.0 225.0 p4 0 n amarelo s
+p 495.0 220.0 p5 0 n verde s
+p 285.0 235.0 p94 0 n marrom s
+e p2 t10 1 n
+e p2 t9 1 n
+e p2 t8 1 n
+e p2 t7 1 n
+e p2 t6 1 n
+e p2 t5 1 n
+e t5 p93 1 n
+e t6 p94 1 n
+e t7 p0 1 n
+e t8 p3 1 n
+e t9 p4 1 n
+e t10 p5 1 n
+e p6 t4 1 n
+e t4 p2 1 n
+e p61 t21 1 n
+e t21 p59 1 n
+e p59 t58 1 n
+e t58 p60 1 n
+e p60 t61 1 n
+e t61 p64 1 n
+e p64 t62 1 n
+e t62 p63 1 n
+e p63 t75 1 n
+e t75 p62 1 n
+e p62 t77 1 n
+e t77 p61 1 n
+e p59 t20 1 n
+e t20 p61 1 n
+e p61 t76 1 n
+e t76 p62 1 n
+e p62 t64 1 n
+e t64 p63 1 n
+e p63 t63 1 n
+e t63 p64 1 n
+e p64 t60 1 n
+e t60 p60 1 n
+e p60 t59 1 n
+e t59 p59 1 n
+e p5 t59 ?-1 n
+e p5 t20 ?-1 n
+e p5 t76 ?-1 n
+e p5 t75 ?-1 n
+e p5 t62 ?-1 n
+e p5 t60 ?-1 n
+e p4 t58 ?-1 n
+e p4 t20 ?-1 n
+e p4 t76 ?-1 n
+e p4 t64 ?-1 n
+e p4 t62 ?-1 n
+e p4 t61 ?-1 n
+e p3 t59 ?-1 n
+e p3 t61 ?-1 n
+e p3 t62 ?-1 n
+e p3 t75 ?-1 n
+e p3 t76 ?-1 n
+e p3 t20 ?-1 n
+e p0 t21 ?-1 n
+e p0 t76 ?-1 n
+e p0 t64 ?-1 n
+e p0 t63 ?-1 n
+e p0 t61 ?-1 n
+e p0 t58 ?-1 n
+e p94 t63 ?-1 n
+e p94 t75 ?-1 n
+e p94 t77 ?-1 n
+e p94 t21 ?-1 n
+e p94 t59 ?-1 n
+e p94 t60 ?-1 n
+e p93 t64 ?-1 n
+e p93 t77 ?-1 n
+e p93 t63 ?-1 n
+e p93 t60 ?-1 n
+e p93 t58 ?-1 n
+e p93 t21 ?-1 n
+e p62 t72 ?-1 n
+e p63 t72 ?-1 n
+e p64 t72 ?-1 n
+e p59 t73 ?-1 n
+e p61 t73 ?-1 n
+e p62 t73 ?-1 n
+e p61 t71 ?-1 n
+e p62 t71 ?-1 n
+e p63 t71 ?-1 n
+e p63 t70 ?-1 n
+e p64 t70 ?-1 n
+e p60 t70 ?-1 n
+e p61 t69 ?-1 n
+e p59 t69 ?-1 n
+e p60 t69 ?-1 n
+e p64 t68 ?-1 n
+e p60 t68 ?-1 n
+e p59 t68 ?-1 n
+e t71 p6 1 n
+e t68 p6 1 n
+e t72 p6 1 n
+e t70 p6 1 n
+e t69 p6 1 n
+e t73 p6 1 n
+e t0 p6 1 n
+e p93 t68 1 n
+e p94 t69 1 n
+e p0 t70 1 n
+e p3 t71 1 n
+e p4 t72 1 n
+e p5 t73 1 n
+e t16 p14 1 n
+e p2 t16 1 n
+e p14 t0 1 n
+e p6 t63 ?-1 n
+e p6 t62 ?-1 n
+e p6 t64 ?-1 n
+e p6 t75 ?-1 n
+e p6 t60 ?-1 n
+e p6 t61 ?-1 n
+e p6 t59 ?-1 n
+e p6 t58 ?-1 n
+e p6 t20 ?-1 n
+e p6 t21 ?-1 n
+e p6 t76 ?-1 n
+e p6 t77 ?-1 n
+e p14 t64 ?-1 n
+e p14 t75 ?-1 n
+e p14 t63 ?-1 n
+e p14 t62 ?-1 n
+e p14 t76 ?-1 n
+e p14 t77 ?-1 n
+e p14 t60 ?-1 n
+e p14 t61 ?-1 n
+e p14 t59 ?-1 n
+e p14 t58 ?-1 n
+e p14 t20 ?-1 n
+e p14 t21 ?-1 n
+e p93 t59 ?-1 n
+e p94 t20 ?-1 n
+e p0 t60 ?-1 n
+e p3 t64 ?-1 n
+e p4 t63 ?-1 n
+e p5 t77 ?-1 n
+h {mm arduino}
+
+
