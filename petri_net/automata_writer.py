@@ -78,5 +78,26 @@ class AutomataWriter:
             if 'state' in line:
                 states.append(line)
 
-        with open('petri_net/automata.ino', 'w+') as file:
-            file.write('Hello!')
+        self.states = states
+
+        # Read heading in heading.ino file
+        with open('petri_net/heading.ino', 'r') as heading:
+            heading_lines = heading.readlines()
+
+        # Write content in automata.ino file
+        with open('petri_net/automata.ino', 'w') as automata:
+
+            automata.writelines(heading_lines) # Write heading
+            automata.write('\nint Automata (int state){')
+            automata.write('\n\tswitch(state){')
+
+            for state in states:
+                state_number = ''.join([letter for letter in state if letter.isdigit()]) # Get state number in string type
+
+                automata.write('\n\t\tcase (' + state_number + ')' + ':') # Write case sentence
+
+                automata.write('\n\t\t\tbreak;')
+
+            automata.write('\n\t}')
+            automata.write('\n\treturn(state);')
+            automata.write('\n}')
