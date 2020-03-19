@@ -3,7 +3,7 @@
 
 SortingMachine mymachine;
 
-int color, position, state;
+int color, state;
 
 void PrintColorTxt(int color){
   switch(color){
@@ -35,8 +35,7 @@ void setup() {
   Serial.begin(115200);
   mymachine.Initialize();
   mymachine.StpMotorMoveToInitPos();
-  state = 1;
-  pos = 4;
+  state = 0;
 }
 
 void loop(){
