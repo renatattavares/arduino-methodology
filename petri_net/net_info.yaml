@@ -2,4 +2,5 @@
 
 # For the developed petri net, the only place that generates inputs is p2, representing the function get_color. The treatment of this place in the arduino code will require a switch case setence for all states related to place p2.
 
-input_places: p2
+input_places:
+  - p2
