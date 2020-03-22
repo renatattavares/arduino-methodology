@@ -1,6 +1,36 @@
-# This file must receive some informations about the net in order to write correctly the arduino code that represents the generated automata. The methodology splits the petri net places in two types: the places that generates inputs in the code and the places that generates outputs.
+# PETRI NET INFO
 
-# For the developed petri net, the only place that generates inputs is p2, representing the function get_color. The treatment of this place in the arduino code will require a switch case setence for all states related to place p2.
+# This file must receive some informations about the net in order to write correctly the arduino code that represents the generated automata. The methodology in study splits the petri net places in two categories: the places with multiple transitions and the places with only one transition. Furthermore, it will be necessary to relate every transition in the petri net to a specific function.
+
+# Places with multiple transitions need a precondition to define which transition will be activated. For the developed petri net, the only place in this condition is p2, representing the place where the variable color receives a number representing the color identified by rbg sensor. The treatment of this place in the arduino code will require a switch case setence for all states related to place p2.
+
+# When it comes to the transitions, a very rigid revision must be done to identify every correlation existent.
+
+functions_correlations:
+  - GetColor:
+    - t4
+  - SrvMotorMoveForward:
+    - t0
+    - t68
+    - t69
+    - t70
+    - t71
+    - t72
+    - t73
+  - StpMotorMoveCW:
+    - t21
+    - t58
+    - t61
+    - t62
+    - t75
+    - t77
+  - StpMotorMoveCCW:
+    - t20
+    - t59
+    - t60
+    - t63
+    - t64
+    - t76
 
 input_places:
   - p2

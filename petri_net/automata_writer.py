@@ -1,10 +1,9 @@
 """
-Module to interpret automata txt file and generate the relation between all states
+Rewrite definition
 """
-import pandas as pd
-import yaml
+from petri_net.net_interpreter import NetInterpreter
 
-class AutomataWriter:
+class AutomataWriter(NetInterpreter):
 
     def __init__(self, file_name):
 
@@ -20,7 +19,6 @@ class AutomataWriter:
         with open(file_name) as automata:
             file_lines = automata.readlines()
 
-        self.automata = []
         self.heading = []
         space = False
 
@@ -33,33 +31,12 @@ class AutomataWriter:
             if line == '\n' and space == True:
                 break
 
-        # Identify automata
+        # Identify file body
         lenght_heading = len(self.heading)
         body = file_lines[lenght_heading:]
 
-        # Cleaning automata's blank lines
-        for line in body:
-            if line.strip() != '':
-                self.automata.append(line.strip())
-
-    def states_input_places(self, net_info_file = 'petri_net/net_info.yaml'):
-        """
-        Identifies all states that are related to places that generates inputs in the petri net. These places should be notified in net_info.yaml file.
-        """
-
-        with open(net_info_file, 'r') as file:
-            data = yaml.safe_load(file)
-
-        self.input_places = data['input_places']
-
-        self.related_states = []
-
-        # Finding states related to input places
-        for place in self.input_places:
-            for line in self.automata:
-                if place in line:
-                    index = self.automata.index(line)
-                    self.related_states.append(self.automata[index - 1])
+        # Defining automata cleaning its blank lines
+        self.automata = [line for line in body if line.strip() != '']
 
     def write_state_machine(self):
         """
