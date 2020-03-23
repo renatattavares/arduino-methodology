@@ -7,27 +7,27 @@ int color, state;
 
 void PrintColorTxt(int color){
   switch(color){
-  case(1):
-    Serial.println("Vermelho");
-    break;
-  case(2):
-    Serial.println("Verde");
-    break;
-   case(3):
-    Serial.println("Azul");
-    break;
-   case(4):
-    Serial.println("Amarelo");
-    break;
-   case(5):
-    Serial.println("Laranja");
-    break;
-   case(6):
-    Serial.println("Marrom");
-    break;
-  case(7):
-    Serial.println("Vazio");
-    break;
+    case(0):
+      Serial.println("Empty");
+      break;
+    case(1):
+      Serial.println("Orange");
+      break;
+    case(2):
+      Serial.println("Brown");
+      break;
+    case(3):
+      Serial.println("Red");
+      break;
+    case(4):
+      Serial.println("Blue");
+      break;
+    case(5):
+      Serial.println("Yellow");
+      break;
+    case(6):
+      Serial.println("Green");
+      break;
   }
 }
 

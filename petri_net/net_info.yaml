@@ -4,9 +4,9 @@
 
 # Places with multiple transitions need a precondition to define which transition will be activated. For the developed petri net, the only place in this condition is p2, representing the place where the variable color receives a number representing the color identified by rbg sensor. The treatment of this place in the arduino code will require a switch case setence for all states related to place p2.
 
-# When it comes to the transitions, a very rigid revision must be done to identify every correlation existent.
+# When it comes to the transitions, a very rigid revision must be done to identify every correlation existent between arduino functions and transitions of the petri net.
 
-functions_correlations:
+functions:
   - GetColor:
     - t4
   - SrvMotorMoveForward:
@@ -32,5 +32,21 @@ functions_correlations:
     - t64
     - t76
 
-input_places:
+colors:
+  - Empty:
+    - t16
+  - Orange:
+    - t5
+  - Brown:
+    - t6
+  - Red:
+    - t7
+  - Blue:
+    - t8
+  - Yellow:
+    - t9
+  - Green:
+    - t10
+
+places:
   - p2

@@ -8,7 +8,10 @@ class AutomataWriter(NetInterpreter):
     def __init__(self, file_name):
 
         self.read_automata(file_name)
-        self.states_input_places()
+        self.read_net_info_file()
+        self.places()
+        self.transitions()
+        self.colors()
         self.write_state_machine()
 
     def read_automata(self, file_name):
@@ -36,7 +39,7 @@ class AutomataWriter(NetInterpreter):
         body = file_lines[lenght_heading:]
 
         # Defining automata cleaning its blank lines
-        self.automata = [line for line in body if line.strip() != '']
+        self.automata = [line.strip() for line in body if line.strip() != '']
 
     def write_state_machine(self):
         """
@@ -65,31 +68,34 @@ class AutomataWriter(NetInterpreter):
                 state_number = ''.join([letter for letter in state if letter.isdigit()]) # Get state number in string data type
 
                 automata.write('\n\t\tcase(' + state_number + '):') # Write case sentence
-                if state in self.related_states:
-                    automata.write('\n\t\t\tcolor = get_color();')
+                if state in self.switch_places:
                     automata.write('\n\t\t\tswitch(color){')
 
                     transitions = self.states_trans_dict[state]
                     transitions = transitions.strip('trans').split()
-                    i = 1
 
                     for trans in transitions:
-                        trans_number = str(i)
                         index = trans.find('/')
-                        state_number = trans[index+1:]
-                        automata.write('\n\t\t\t\tcase(' + trans_number + '):')
-                        automata.write('\n\t\t\t\t\tstate = ' + state_number + ';')
-                        i += 1
+                        color_number = self.colors_number[trans[:index]]
+                        future_state_number = trans[index+1:]
+                        automata.write('\n\t\t\t\tcase(' + color_number + '):')
+                        automata.write('\n\t\t\t\t\tstate = ' + future_state_number + ';')
+                        automata.write('\n\t\t\t\t\tbreak;')
 
                     automata.write('\n\t\t\t\t}')
+
 
                 else:
                     transition = self.states_trans_dict[state].strip('trans')
                     index = transition.find('/')
-                    state_number = transition[index+1:]
-                    automata.write('\n\t\t\tstate = ' + state_number + ';')
+                    future_state_number = transition[index+1:]
+                    function = self.functions[transition[:index].strip(' ')]
 
-                automata.write('\n\t\t\tbreak;')
+                    if function == 'GetColor':
+                        function = 'color = GetColor'
+                    automata.write('\n\t\t\t' + function + '();')
+                    automata.write('\n\t\t\tstate = ' + future_state_number + ';')
+                    automata.write('\n\t\t\tbreak;')
 
             automata.write('\n\t}')
             automata.write('\n\treturn(state);')
