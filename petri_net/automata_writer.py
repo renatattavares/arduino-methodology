@@ -83,19 +83,28 @@ class AutomataWriter(NetInterpreter):
                         automata.write('\n\t\t\t\t\tbreak;')
 
                     automata.write('\n\t\t\t\t}')
+                    automata.write('\n\t\t\tbreak;')
+
 
 
                 else:
                     transition = self.states_trans_dict[state].strip('trans')
                     index = transition.find('/')
                     future_state_number = transition[index+1:]
-                    function = self.functions[transition[:index].strip(' ')]
+                    function = 'mymachine.' + self.functions[transition[:index].strip(' ')]
 
-                    if function == 'GetColor':
-                        function = 'color = GetColor'
-                    automata.write('\n\t\t\t' + function + '();')
-                    automata.write('\n\t\t\tstate = ' + future_state_number + ';')
-                    automata.write('\n\t\t\tbreak;')
+                    if function == 'mymachine.GetColor':
+                        function = 'color = mymachine.GetColor'
+                        automata.write('\n\t\t\t' + function + '();')
+                        automata.write('\n\t\t\tmymachine.ShowColor(color);')
+                        automata.write('\n\t\t\tSerial.print("\\t Cor detectada:");')
+                        automata.write('\n\t\t\tPrintColorTxt(color);')
+                        automata.write('\n\t\t\tstate = ' + future_state_number + ';')
+                        automata.write('\n\t\t\tbreak;')
+                    else:
+                        automata.write('\n\t\t\t' + function + '();')
+                        automata.write('\n\t\t\tstate = ' + future_state_number + ';')
+                        automata.write('\n\t\t\tbreak;')
 
             automata.write('\n\t}')
             automata.write('\n\treturn(state);')
