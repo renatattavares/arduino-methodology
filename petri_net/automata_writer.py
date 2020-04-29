@@ -14,33 +14,6 @@ class AutomataWriter(NetInterpreter):
         self.colors()
         self.write_state_machine()
 
-    def read_automata(self, file_name):
-        """
-        Interprets the file containing the informations of automata. Creates a list containg the lines that composes the heading and the body of file provided.
-        """
-
-        with open(file_name) as automata:
-            file_lines = automata.readlines()
-
-        self.heading = []
-        space = False
-
-        # Identify heading
-        for line in file_lines:
-            self.heading.append(line.strip())
-            if line == '\n' and space == False:
-                space = True
-                line = None
-            if line == '\n' and space == True:
-                break
-
-        # Identify file body
-        lenght_heading = len(self.heading)
-        body = file_lines[lenght_heading:]
-
-        # Defining automata cleaning its blank lines
-        self.automata = [line.strip() for line in body if line.strip() != '']
-
     def write_state_machine(self):
         """
         It creates a file with a case switch sentence that represents a state machine with the automata's logic.
@@ -99,6 +72,9 @@ class AutomataWriter(NetInterpreter):
                         automata.write('\n\t\t\tmymachine.ShowColor(color);')
                         automata.write('\n\t\t\tSerial.print("\\t Cor detectada:");')
                         automata.write('\n\t\t\tPrintColorTxt(color);')
+                        automata.write('\n\t\t\tstate = ' + future_state_number + ';')
+                        automata.write('\n\t\t\tbreak;')
+                    elif function == 'mymachine.Ignore':
                         automata.write('\n\t\t\tstate = ' + future_state_number + ';')
                         automata.write('\n\t\t\tbreak;')
                     else:

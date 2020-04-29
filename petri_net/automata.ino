@@ -49,43 +49,42 @@ int Automata (int state){
 			state = 1;
 			break;
 		case(1):
+			state = 2;
+			break;
+		case(2):
 			color = mymachine.GetColor();
 			mymachine.ShowColor(color);
 			Serial.print("\t Cor detectada:");
 			PrintColorTxt(color);
-			state = 2;
+			state = 3;
 			break;
-		case(2):
+		case(3):
 			switch(color){
 				case(0):
 					state = 0;
 					break;
 				case(6):
-					state = 3;
-					break;
-				case(1):
 					state = 4;
 					break;
-				case(2):
+				case(1):
 					state = 5;
 					break;
-				case(3):
+				case(2):
 					state = 6;
 					break;
-				case(4):
+				case(3):
 					state = 7;
 					break;
-				case(5):
+				case(4):
 					state = 8;
+					break;
+				case(5):
+					state = 9;
 					break;
 				}
 			break;
-		case(3):
-			mymachine.StpMotorMoveCW();
-			state = 9;
-			break;
 		case(4):
-			mymachine.StpMotorMoveCCW();
+			mymachine.StpMotorMoveCW();
 			state = 10;
 			break;
 		case(5):
@@ -93,53 +92,47 @@ int Automata (int state){
 			state = 11;
 			break;
 		case(6):
-			mymachine.SrvMotorMoveForward();
-			state = 1 t20/12;
+			mymachine.StpMotorMoveCCW();
+			state = 12;
 			break;
 		case(7):
 			mymachine.SrvMotorMoveForward();
-			state = 1 t58/13;
+			state = 13;
 			break;
 		case(8):
 			mymachine.SrvMotorMoveForward();
-			state = 1;
+			state = 14;
 			break;
 		case(9):
-			mymachine.StpMotorMoveCW();
-			state = 14 t73/15;
+			mymachine.SrvMotorMoveForward();
+			state = 1;
 			break;
 		case(10):
 			mymachine.SrvMotorMoveForward();
-			state = 16 t76/17;
+			state = 15;
 			break;
 		case(11):
-			mymachine.StpMotorMoveCCW();
-			state = 18;
-			break;
-		case(12):
 			mymachine.SrvMotorMoveForward();
 			state = 16;
 			break;
+		case(12):
+			mymachine.StpMotorMoveCCW();
+			state = 17;
+			break;
 		case(13):
-			mymachine.SrvMotorMoveForward();
-			state = 15;
+			mymachine.StpMotorMoveCCW();
+			state = 18;
 			break;
 		case(14):
-			mymachine.SrvMotorMoveForward();
+			mymachine.StpMotorMoveCW();
 			state = 19;
 			break;
 		case(15):
-			color = mymachine.GetColor();
-			mymachine.ShowColor(color);
-			Serial.print("\t Cor detectada:");
-			PrintColorTxt(color);
+			mymachine.StpMotorMoveCW();
 			state = 20;
 			break;
 		case(16):
-			color = mymachine.GetColor();
-			mymachine.ShowColor(color);
-			Serial.print("\t Cor detectada:");
-			PrintColorTxt(color);
+			mymachine.StpMotorMoveCCW();
 			state = 21;
 			break;
 		case(17):
@@ -147,262 +140,353 @@ int Automata (int state){
 			state = 22;
 			break;
 		case(18):
-			mymachine.SrvMotorMoveForward();
-			state = 22 t64/23;
+			state = 23;
 			break;
 		case(19):
-			color = mymachine.GetColor();
-			mymachine.ShowColor(color);
-			Serial.print("\t Cor detectada:");
-			PrintColorTxt(color);
 			state = 24;
 			break;
 		case(20):
-			switch(color){
-				case(6):
-					state = 9;
-					break;
-				case(4):
-					state = 13;
-					break;
-				case(0):
-					state = 25;
-					break;
-				case(1):
-					state = 26;
-					break;
-				case(2):
-					state = 27;
-					break;
-				case(3):
-					state = 28;
-					break;
-				case(5):
-					state = 29;
-					break;
-				}
+			state = 25;
 			break;
 		case(21):
+			state = 26;
+			break;
+		case(22):
+			mymachine.StpMotorMoveCCW();
+			state = 27;
+			break;
+		case(23):
+			color = mymachine.GetColor();
+			mymachine.ShowColor(color);
+			Serial.print("\t Cor detectada:");
+			PrintColorTxt(color);
+			state = 28;
+			break;
+		case(24):
+			color = mymachine.GetColor();
+			mymachine.ShowColor(color);
+			Serial.print("\t Cor detectada:");
+			PrintColorTxt(color);
+			state = 29;
+			break;
+		case(25):
+			color = mymachine.GetColor();
+			mymachine.ShowColor(color);
+			Serial.print("\t Cor detectada:");
+			PrintColorTxt(color);
+			state = 30;
+			break;
+		case(26):
+			color = mymachine.GetColor();
+			mymachine.ShowColor(color);
+			Serial.print("\t Cor detectada:");
+			PrintColorTxt(color);
+			state = 31;
+			break;
+		case(27):
+			state = 32;
+			break;
+		case(28):
 			switch(color){
 				case(1):
-					state = 10;
-					break;
-				case(2):
 					state = 11;
 					break;
-				case(3):
+				case(2):
 					state = 12;
 					break;
 				case(6):
-					state = 30;
-					break;
-				case(0):
-					state = 31;
-					break;
-				case(4):
-					state = 32;
-					break;
-				case(5):
 					state = 33;
 					break;
-				}
-			break;
-		case(22):
-			color = mymachine.GetColor();
-			mymachine.ShowColor(color);
-			Serial.print("\t Cor detectada:");
-			PrintColorTxt(color);
-			state = 34;
-			break;
-		case(23):
-			mymachine.SrvMotorMoveForward();
-			state = 35;
-			break;
-		case(24):
-			switch(color){
-				case(6):
-					state = 14;
-					break;
 				case(0):
+					state = 34;
+					break;
+				case(3):
+					state = 35;
+					break;
+				case(4):
 					state = 36;
 					break;
-				case(1):
+				case(5):
 					state = 37;
 					break;
-				case(2):
-					state = 38;
-					break;
-				case(3):
-					state = 39;
-					break;
-				case(4):
-					state = 40;
-					break;
-				case(5):
-					state = 41;
-					break;
 				}
-			break;
-		case(25):
-			mymachine.SrvMotorMoveForward();
-			state = 15;
-			break;
-		case(26):
-			mymachine.StpMotorMoveCCW();
-			state = 4;
-			break;
-		case(27):
-			mymachine.StpMotorMoveCW();
-			state = 38;
-			break;
-		case(28):
-			mymachine.StpMotorMoveCCW();
-			state = 6;
 			break;
 		case(29):
-			mymachine.StpMotorMoveCCW();
-			state = 8 t72/15;
-			break;
-		case(30):
-			mymachine.StpMotorMoveCCW();
-			state = 42;
-			break;
-		case(31):
-			mymachine.SrvMotorMoveForward();
-			state = 16;
-			break;
-		case(32):
-			mymachine.StpMotorMoveCW();
-			state = 7;
-			break;
-		case(33):
-			mymachine.StpMotorMoveCW();
-			state = 8 t72/16;
-			break;
-		case(34):
 			switch(color){
-				case(1):
-					state = 17;
-					break;
-				case(2):
-					state = 18;
-					break;
 				case(6):
-					state = 42;
+					state = 10;
 					break;
 				case(0):
-					state = 43;
+					state = 38;
+					break;
+				case(1):
+					state = 39;
+					break;
+				case(2):
+					state = 40;
 					break;
 				case(3):
-					state = 44;
+					state = 41;
 					break;
 				case(4):
-					state = 45;
+					state = 42;
 					break;
 				case(5):
-					state = 46;
+					state = 43;
 					break;
 				}
 			break;
-		case(35):
+		case(30):
+			switch(color){
+				case(6):
+					state = 44;
+					break;
+				case(0):
+					state = 45;
+					break;
+				case(1):
+					state = 46;
+					break;
+				case(2):
+					state = 47;
+					break;
+				case(3):
+					state = 48;
+					break;
+				case(4):
+					state = 49;
+					break;
+				case(5):
+					state = 50;
+					break;
+				}
+			break;
+		case(31):
+			switch(color){
+				case(2):
+					state = 17;
+					break;
+				case(6):
+					state = 51;
+					break;
+				case(0):
+					state = 52;
+					break;
+				case(1):
+					state = 53;
+					break;
+				case(3):
+					state = 54;
+					break;
+				case(4):
+					state = 55;
+					break;
+				case(5):
+					state = 56;
+					break;
+				}
+			break;
+		case(32):
 			color = mymachine.GetColor();
 			mymachine.ShowColor(color);
 			Serial.print("\t Cor detectada:");
 			PrintColorTxt(color);
-			state = 47;
+			state = 57;
+			break;
+		case(33):
+			mymachine.StpMotorMoveCCW();
+			state = 51;
+			break;
+		case(34):
+			mymachine.SrvMotorMoveForward();
+			state = 58;
+			break;
+		case(35):
+			mymachine.SrvMotorMoveForward();
+			state = 58;
 			break;
 		case(36):
-			mymachine.SrvMotorMoveForward();
-			state = 19;
+			mymachine.StpMotorMoveCW();
+			state = 8;
 			break;
 		case(37):
-			mymachine.StpMotorMoveCW();
-			state = 48;
+			mymachine.SrvMotorMoveForward();
+			state = 59;
 			break;
 		case(38):
 			mymachine.SrvMotorMoveForward();
-			state = 19 t62/23;
+			state = 60;
 			break;
 		case(39):
 			mymachine.StpMotorMoveCCW();
-			state = 28;
+			state = 5;
 			break;
 		case(40):
-			mymachine.StpMotorMoveCCW();
-			state = 13 t71/19;
+			mymachine.StpMotorMoveCW();
+			state = 47;
 			break;
 		case(41):
 			mymachine.StpMotorMoveCCW();
-			state = 29;
+			state = 7;
 			break;
 		case(42):
-			mymachine.StpMotorMoveCCW();
-			state = 49;
+			mymachine.SrvMotorMoveForward();
+			state = 60;
 			break;
 		case(43):
 			mymachine.SrvMotorMoveForward();
-			state = 22;
+			state = 61;
 			break;
 		case(44):
-			mymachine.StpMotorMoveCW();
-			state = 12 t70/22;
+			mymachine.SrvMotorMoveForward();
+			state = 62;
 			break;
 		case(45):
-			mymachine.StpMotorMoveCCW();
-			state = 50;
+			mymachine.SrvMotorMoveForward();
+			state = 62;
 			break;
 		case(46):
 			mymachine.StpMotorMoveCW();
-			state = 33;
+			state = 63;
 			break;
 		case(47):
-			switch(color){
-				case(2):
-					state = 23;
-					break;
-				case(1):
-					state = 48;
-					break;
-				case(6):
-					state = 49;
-					break;
-				case(4):
-					state = 50;
-					break;
-				case(0):
-					state = 51;
-					break;
-				case(3):
-					state = 52;
-					break;
-				case(5):
-					state = 53;
-					break;
-				}
+			mymachine.SrvMotorMoveForward();
+			state = 64;
 			break;
 		case(48):
-			mymachine.StpMotorMoveCW();
-			state = 17 t68/35;
+			mymachine.StpMotorMoveCCW();
+			state = 41;
 			break;
 		case(49):
-			mymachine.StpMotorMoveCCW();
-			state = 14 t73/35;
+			mymachine.SrvMotorMoveForward();
+			state = 65;
 			break;
 		case(50):
 			mymachine.StpMotorMoveCCW();
-			state = 40;
+			state = 43;
 			break;
 		case(51):
-			mymachine.SrvMotorMoveForward();
-			state = 35;
+			mymachine.StpMotorMoveCCW();
+			state = 66;
 			break;
 		case(52):
-			mymachine.StpMotorMoveCW();
-			state = 44;
+			mymachine.SrvMotorMoveForward();
+			state = 67;
 			break;
 		case(53):
+			mymachine.SrvMotorMoveForward();
+			state = 67;
+			break;
+		case(54):
+			mymachine.SrvMotorMoveForward();
+			state = 68;
+			break;
+		case(55):
 			mymachine.StpMotorMoveCCW();
-			state = 41;
+			state = 69;
+			break;
+		case(56):
+			mymachine.StpMotorMoveCW();
+			state = 37;
+			break;
+		case(57):
+			switch(color){
+				case(1):
+					state = 63;
+					break;
+				case(6):
+					state = 66;
+					break;
+				case(4):
+					state = 69;
+					break;
+				case(0):
+					state = 70;
+					break;
+				case(2):
+					state = 71;
+					break;
+				case(3):
+					state = 72;
+					break;
+				case(5):
+					state = 73;
+					break;
+				}
+			break;
+		case(58):
+			state = 23;
+			break;
+		case(59):
+			mymachine.StpMotorMoveCCW();
+			state = 74;
+			break;
+		case(60):
+			state = 24;
+			break;
+		case(61):
+			mymachine.StpMotorMoveCW();
+			state = 74;
+			break;
+		case(62):
+			state = 25;
+			break;
+		case(63):
+			mymachine.SrvMotorMoveForward();
+			state = 75;
+			break;
+		case(64):
+			mymachine.StpMotorMoveCW();
+			state = 27;
+			break;
+		case(65):
+			mymachine.StpMotorMoveCW();
+			state = 19;
+			break;
+		case(66):
+			mymachine.SrvMotorMoveForward();
+			state = 76;
+			break;
+		case(67):
+			state = 26;
+			break;
+		case(68):
+			mymachine.StpMotorMoveCW();
+			state = 18;
+			break;
+		case(69):
+			mymachine.StpMotorMoveCCW();
+			state = 49;
+			break;
+		case(70):
+			mymachine.SrvMotorMoveForward();
+			state = 77;
+			break;
+		case(71):
+			mymachine.SrvMotorMoveForward();
+			state = 77;
+			break;
+		case(72):
+			mymachine.StpMotorMoveCW();
+			state = 54;
+			break;
+		case(73):
+			mymachine.StpMotorMoveCCW();
+			state = 50;
+			break;
+		case(74):
+			state = 2;
+			break;
+		case(75):
+			mymachine.StpMotorMoveCW();
+			state = 21;
+			break;
+		case(76):
+			mymachine.StpMotorMoveCCW();
+			state = 20;
+			break;
+		case(77):
+			state = 32;
 			break;
 	}
 	return(state);

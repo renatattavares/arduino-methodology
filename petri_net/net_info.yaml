@@ -1,4 +1,4 @@
-# PETRI NET INFO
+  # PETRI NET INFO
 
 # This file must receive some informations about the net in order to write correctly the arduino code that represents the generated automata. The methodology in study splits the petri net places in two categories: the places with multiple transitions and the places with only one transition. Furthermore, it will be necessary to relate every transition in the petri net to a specific function.
 
@@ -8,7 +8,7 @@
 
 functions:
   - GetColor:
-    - t4
+    - t35
   - SrvMotorMoveForward:
     - t0
     - t68
@@ -17,20 +17,46 @@ functions:
     - t71
     - t72
     - t73
+    - t15
+    - t14
+    - t11
+    - t13
+    - t17
+    - t27
+    - t3
+    - t22
+    - t23
+    - t12
+    - t18
+    - t25
   - StpMotorMoveCW:
-    - t21
-    - t58
-    - t61
-    - t62
+    - t1
+    - t36
+    - t33
+    - t32
+    - t29
+    - t24
     - t75
-    - t77
-  - StpMotorMoveCCW:
-    - t20
-    - t59
     - t60
-    - t63
+    - t61
+    - t55
+    - t77
+    - t58
+    - t59
+  - StpMotorMoveCCW:
+    - t37
+    - t2
+    - t19
+    - t30
+    - t26
+    - t34
     - t64
+    - t20
+    - t28
     - t76
+    - t63
+  - Ignore:
+    - t4
 
 colors:
   - Empty:
