@@ -37,12 +37,11 @@ functions:
     - t29
     - t24
     - t75
-    - t60
+    - t28
     - t61
     - t55
     - t77
     - t58
-    - t59
   - StpMotorMoveCCW:
     - t37
     - t2
@@ -52,9 +51,10 @@ functions:
     - t34
     - t64
     - t20
-    - t28
+    - t60
     - t76
     - t63
+    - t59
   - Ignore:
     - t4
 

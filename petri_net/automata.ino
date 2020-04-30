@@ -418,14 +418,14 @@ int Automata (int state){
 			state = 23;
 			break;
 		case(59):
-			mymachine.StpMotorMoveCCW();
+			mymachine.StpMotorMoveCW();
 			state = 74;
 			break;
 		case(60):
 			state = 24;
 			break;
 		case(61):
-			mymachine.StpMotorMoveCW();
+			mymachine.StpMotorMoveCCW();
 			state = 74;
 			break;
 		case(62):
@@ -440,7 +440,7 @@ int Automata (int state){
 			state = 27;
 			break;
 		case(65):
-			mymachine.StpMotorMoveCW();
+			mymachine.StpMotorMoveCCW();
 			state = 19;
 			break;
 		case(66):

@@ -1,6 +1,6 @@
-# Created Wed Apr 29 11:47:43 2020 by TINA version 3.5.0
+# Created Thu Apr 30 08:50:54 2020 by TINA version 3.5.0
 
-kts {rdp-novomodelo2.0 - Implementação (1)}
+kts final
 78 nodes
 114 edges
 2 state property namespace(s)
