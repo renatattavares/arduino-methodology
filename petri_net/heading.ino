@@ -41,3 +41,6 @@ void setup() {
 void loop(){
   state = Automata(state);
 }
+
+int Automaton (int state){
+	switch(state){

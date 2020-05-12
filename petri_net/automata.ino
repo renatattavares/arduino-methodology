@@ -42,7 +42,7 @@ void loop(){
   state = Automata(state);
 }
 
-int Automata (int state){
+int Automaton (int state){
 	switch(state){
 		case(0):
 			mymachine.SrvMotorMoveForward();

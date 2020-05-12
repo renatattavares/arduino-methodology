@@ -18,13 +18,6 @@ class AutomataWriter(NetInterpreter):
         """
         It creates a file with a case switch sentence that represents a state machine with the automata's logic.
         """
-        # Identify all states and transitions of automata
-        self.states_trans_dict = {}
-
-        for line in self.automata:
-            if 'state' in line:
-                index = self.automata.index(line)
-                self.states_trans_dict[line] = self.automata[index+2]
 
         # Read heading in heading.ino file
         with open('petri_net/heading.ino', 'r') as heading:
@@ -34,13 +27,11 @@ class AutomataWriter(NetInterpreter):
         with open('petri_net/automata.ino', 'w') as automata:
 
             automata.writelines(heading_lines) # Write heading
-            automata.write('\nint Automata (int state){')
-            automata.write('\n\tswitch(state){')
 
             for state in self.states_trans_dict.keys():
                 state_number = ''.join([letter for letter in state if letter.isdigit()]) # Get state number in string data type
-
                 automata.write('\n\t\tcase(' + state_number + '):') # Write case sentence
+
                 if state in self.switch_places:
                     automata.write('\n\t\t\tswitch(color){')
 
@@ -58,8 +49,6 @@ class AutomataWriter(NetInterpreter):
                     automata.write('\n\t\t\t\t}')
                     automata.write('\n\t\t\tbreak;')
 
-
-
                 else:
                     transition = self.states_trans_dict[state].strip('trans')
                     index = transition.find('/')
@@ -74,9 +63,11 @@ class AutomataWriter(NetInterpreter):
                         automata.write('\n\t\t\tPrintColorTxt(color);')
                         automata.write('\n\t\t\tstate = ' + future_state_number + ';')
                         automata.write('\n\t\t\tbreak;')
+
                     elif function == 'mymachine.Ignore':
                         automata.write('\n\t\t\tstate = ' + future_state_number + ';')
                         automata.write('\n\t\t\tbreak;')
+                        
                     else:
                         automata.write('\n\t\t\t' + function + '();')
                         automata.write('\n\t\t\tstate = ' + future_state_number + ';')

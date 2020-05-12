@@ -29,6 +29,14 @@ class NetInterpreter:
         # Defining automata cleaning its blank lines
         self.automata = [line.strip() for line in body if line.strip() != '']
 
+        # Identify all states and transitions of automata
+        self.states_trans_dict = {}
+
+        for line in self.automata:
+            if 'state' in line:
+                index = self.automata.index(line)
+                self.states_trans_dict[line] = self.automata[index+2]
+
     def read_net_info_file(self, net_info_file = 'petri_net/net_info.yaml'):
 
         with open(net_info_file, 'r') as file:
@@ -43,7 +51,7 @@ class NetInterpreter:
         Identifies all states that are related to places that must receive a switch case sentence. This places must be informed in net_info.yaml file.
         """
         indexes = []
-        
+
         for place in self.places_info:
             for line in self.automata:
                 if place in line:
@@ -54,8 +62,9 @@ class NetInterpreter:
 
     def transitions(self, net_info_file = 'petri_net/net_info.yaml'):
         """
-        Identifies all states that are related to transitions that represents specific functions in arduino library. Thesec transitions must be informed in net_info.yaml file, considering which function they represent.
+        Creates a dictionary that contains the group of transitions thata represent each Arduino library function
         """
+        
         inverted_dict = {}
 
         for dict in self.functions_info:
@@ -65,7 +74,6 @@ class NetInterpreter:
                 inverted_dict[transition] = function
 
         self.functions = inverted_dict
-
 
     def colors(self, net_info_file = 'petri_net/net_info.yaml'):
         """
